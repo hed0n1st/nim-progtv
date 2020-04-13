@@ -41,7 +41,7 @@ Usage:
   progtv now
   progtv prime [<date>]
   progtv <channel> [--now | --prime] [<date>]
-  
+
 """
 
 let args = docopt(doc, version = "0.1")
@@ -131,7 +131,7 @@ proc doPayload(idChannel: string, date: string): array[0..3, (string, string)] =
 proc getProgStartTime(h: string): string =
   var h = h.split("T")[1]
             .split("+")[0]
-  var hour = parseInt(h.split(":")[0]) + 1 # FR TIME
+  var hour = parseInt(h.split(":")[0]) + 2 # FR TIME
   var minutes = h.split(":")[1]
   result = $hour & ":" & minutes
 
