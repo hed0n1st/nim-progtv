@@ -45,5 +45,6 @@ let idChannels* = %* {
     "action": "10",
     "13emerue": "2",
     "planet+": "147",
-    "polar+": "2326"
+    "polar+": "2326",
+    "culturebox": "3163"
   }

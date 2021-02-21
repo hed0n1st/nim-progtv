@@ -45,7 +45,8 @@ Usage:
 """
 
 let args = docopt(doc, version = "0.1")
-let client = newHttpClient()
+let proxy = newProxy("http://127.0.0.1:8888")
+let client = newHttpClient(proxy = proxy)
 
 proc getDate(): string =
   let dt = now()
@@ -73,7 +74,6 @@ proc buildProgs(progs: Table[int, seq[string]] or seq[string], data: JsonNode): 
       var progTitle = d["title"].getStr()
       var progStart = d["startedAt"].getStr()
       progStart = progStart.getProgStartTime()
-
       var prog = progStart & " ::: " & progTitle.fgBlue()
       result[idChannel].add(prog)
 
@@ -131,7 +131,7 @@ proc doPayload(idChannel: string, date: string): array[0..3, (string, string)] =
 proc getProgStartTime(h: string): string =
   var h = h.split("T")[1]
             .split("+")[0]
-  var hour = parseInt(h.split(":")[0]) + 2 # FR TIME
+  var hour = parseInt(h.split(":")[0]) + 1 # FR TIME
   var minutes = h.split(":")[1]
   result = $hour & ":" & minutes
 
@@ -206,5 +206,3 @@ when isMainModule:
       var c = $args["<channel>"]
       echo c.fgYellow() & " ::: " & progs[1]
       echo c.fgYellow() & " ::: " & progs[0]
-
-
