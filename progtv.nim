@@ -45,8 +45,7 @@ Usage:
 """
 
 let args = docopt(doc, version = "0.1")
-let proxy = newProxy("http://127.0.0.1:8888")
-let client = newHttpClient(proxy = proxy)
+let client = newHttpClient()
 
 proc getDate(): string =
   let dt = now()
